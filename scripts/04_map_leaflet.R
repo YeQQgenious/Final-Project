@@ -1,9 +1,10 @@
 #Step 4: Construct an interactive map of Chicago Community Areas colored by cluster.
-
-library(tidyverse)
-library(janitor)
-library(sf)
-library(leaflet)
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(janitor)
+  library(sf)
+  library(leaflet)
+})
 
 if (!dir.exists("data")) dir.create("data")
 

@@ -1,5 +1,7 @@
-library(tidyverse)
-library(jsonlite)
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(jsonlite)
+  })
 
 limit_rows   <- 50000
 

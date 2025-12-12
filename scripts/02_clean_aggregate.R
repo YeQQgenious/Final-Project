@@ -1,9 +1,10 @@
 #Clean 311 data and build a community × complaint type matrix.
-
-library(tidyverse)
-library(lubridate)
-library(janitor)
-library(naniar)
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(lubridate)
+  library(janitor)
+  library(naniar)
+})
 
 year_window  <- 1       #Recent year
 top_n_types  <- 10      # Top N Complaint types
@@ -70,9 +71,9 @@ p_types <- dat_top %>%
     y = "Count"
   ) +
   theme_minimal()
+print(p_types)
 
 ggsave("data/plot_top_types.png", p_types, width = 8, height = 5, dpi = 300)
-message("Figure 1 (Top type bar chart) has been saved to data/plot_top_types.png")
 
 #TABLE2: Community Total Bar Chart
 p_ca_total <- dat_top %>%
@@ -86,5 +87,6 @@ p_ca_total <- dat_top %>%
   ) +
   theme_minimal()
 
+print(p_ca_total)
+
 ggsave("data/plot_ca_totals.png", p_ca_total, width = 8, height = 5, dpi = 300)
-message("Figure 2 (Bar Chart of Total Community Quantity) has been saved data/plot_ca_totals.png")

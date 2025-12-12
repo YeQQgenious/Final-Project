@@ -1,6 +1,8 @@
 #Step 3: Use k-means to cluster the community 311 complaint structure.
-library(tidyverse)
-library(tidymodels)
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(tidymodels)
+})
 
 k_clusters <- 4 #Clustered into several
 
@@ -29,7 +31,8 @@ k_grid <- tibble(k = 2:8) %>%
   )
 
 p_elbow <- ggplot(k_grid, aes(k, tot_withinss)) +
-  geom_line() + geom_point() +
+  geom_line() +
+  geom_point() +
   labs(
     title = "Elbow Plot for K-means",
     x = "Number of clusters (k)",
@@ -37,8 +40,9 @@ p_elbow <- ggplot(k_grid, aes(k, tot_withinss)) +
   ) +
   theme_minimal()
 
+print(p_elbow)
+
 ggsave("data/plot_elbow.png", p_elbow, width = 6, height = 4, dpi = 300)
-message("The Elbow Plot has been saved to data/plot_elbow.png")
 
 # Actual k-means clustering
 km_fit <- kmeans(x_scaled, centers = k_clusters, nstart = 50)
@@ -68,5 +72,6 @@ p_heat <- cluster_profile %>%
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
+print(p_heat)
+
 ggsave("data/plot_cluster_heatmap.png", p_heat, width = 9, height = 4.5, dpi = 300)
-message("Figure 3 (cluster heatmap) has been saved to data/plot_cluster_heatmap.png")

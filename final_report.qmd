@@ -1,0 +1,91 @@
+---
+title: "Mapping & Clustering 311 Complaints for City Services"
+author: "Your Name"
+format: html
+execute:
+  echo: true
+toc: true
+toc-depth: 3
+---
+
+# **1. Introduction**
+
+Chicago’s 311 system provides an important channel through which residents report non-emergency service needs. While individual requests are operationally useful, aggregated analysis is necessary to understand neighborhood-level service patterns.
+
+This project analyzes Chicago 311 complaint data to identify similarities in service demand across communities. By clustering neighborhoods based on complaint profiles and visualizing results through maps, the project demonstrates how civic data can support more informed and equitable service planning.
+
+# **2. Data Source and Acquisition**
+
+311 service request data were obtained from the **Chicago Open Data Portal** using the Socrata API. Data acquisition and analysis were conducted entirely in R to ensure transparency and reproducibility.
+
+```{r}
+source("scripts/01_get_311.R")
+```
+
+The dataset includes complaint type, community area, geographic coordinates, and request timestamps.
+
+# **3. Data Cleaning and Preparation**
+
+Data cleaning and aggregation were conducted using tidyverse workflows:
+
+```{r}
+source("scripts/02_clean_aggregate.R")
+```
+
+Key steps included:
+
+-   Standardizing variable names
+
+-   Harmonizing complaint type fields
+
+-   Filtering requests to the most recent year
+
+-   Selecting the top complaint categories
+
+-   Constructing a community-by-complaint matrix for clustering
+
+Descriptive visualizations were generated to summarize overall complaint patterns.
+
+# 4. Clustering Analysis
+
+To identify groups of communities with similar service request structures, k-means clustering was applied to standardized complaint frequencies.
+
+```{r}
+source("scripts/03_cluster.R")
+```
+
+An elbow plot was used to guide selection of four clusters. The resulting efined
+
+clusters reflect distinct complaint profiles, such as sanitation-focused, infrastructure-focused, and mixed service demand patterns. Cluster summaries were visualized using a heatmap.
+
+# 5. Interactive Mapping
+
+An interactive Leaflet map was created to visualize 311 requests by cluster assignment.
+
+```{r}
+source("scripts/04_map_leaflet.R")
+```
+
+Each point represents a 311 request, colored by the cluster of its community area. The map allows users to explore spatial patterns and compare service needs across neighborhoods.
+
+# 6. Key Findings
+
+-   311 complaint types are unevenly distributed across communities.
+
+-   Clustering reveals meaningful differences in service demand structures.
+
+-   Spatial visualization highlights geographic concentrations of specific service issues.
+
+These findings demonstrate that community-level patterns are not random, but reflect underlying differences in infrastructure, environment, and reporting behavior.
+
+# 7. Ethical and Equity Considerations
+
+311 data reflects reported needs rather than true service demand. Reporting behavior varies by access to technology, language, trust in government, and awareness of the 311 system. As a result, low complaint volume should not be interpreted as low need.
+
+Cluster results should be used as diagnostic signals rather than direct inputs for punitive or exclusionary policy decisions. Responsible use requires combining 311 data with additional sources and community engagement.
+
+# 8. Conclusion
+
+This project illustrates how civic data analytics can transform large volumes of service requests into actionable insights. Through clustering and mapping of 311 complaints, the analysis highlights neighborhood-level service patterns while emphasizing the importance of equity-aware interpretation.
+
+The fully reproducible workflow demonstrates the value of open data, transparent methods, and responsible civic technology practices.
