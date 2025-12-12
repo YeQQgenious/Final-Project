@@ -1,11 +1,12 @@
 ---
 title: "Mapping & Clustering 311 Complaints for City Services"
-author: "Qiangqiang Ye"
+author: "Your Name"
 format: html
 execute:
   echo: true
+  warning: false
+  message: false
 toc: true
-toc-depth: 3
 ---
 
 # **1. Introduction**
