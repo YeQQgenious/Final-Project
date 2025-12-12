@@ -168,27 +168,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>311 service request data were obtained from the <strong>Chicago Open Data Portal</strong> using the Socrata API. Data acquisition and analysis were conducted entirely in R to ensure transparency and reproducibility.</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/01_get_311.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 程序包'tidyverse'是用R版本4.5.2 来建造的</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 程序包'ggplot2'是用R版本4.5.2 来建造的</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 程序包'tibble'是用R版本4.5.2 来建造的</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 程序包'dplyr'是用R版本4.5.2 来建造的</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 程序包'jsonlite'是用R版本4.5.2 来建造的</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Step 1: Retrieving data from the Chicago 311 API</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The original data has been saved to data/raw_311.csv</code></pre>
-</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 50,000
 Columns: 47
@@ -247,25 +226,7 @@ $ location.human_address        &lt;chr&gt; "{\"address\": \"\", \"city\": \"\",
 <h1><strong>3. Data Cleaning and Preparation</strong></h1>
 <p>Data cleaning and aggregation were conducted using tidyverse workflows:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/02_clean_aggregate.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 程序包'janitor'是用R版本4.5.2 来建造的</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 程序包'naniar'是用R版本4.5.2 来建造的</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Step 2: Read raw_311.csv and clean the data...</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: One or more parsing issues, call `problems()` on your data frame for details,
-e.g.:
-  dat &lt;- vroom(...)
-  problems(dat)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The community × type matrix has been saved to data/ca_type_matrix.csv</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/02_clean_aggregate.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 77 × 11
    community_area `311 INFORMATION ONLY CALL` `Abandoned Vehicle Complaint`
@@ -317,55 +278,13 @@ e.g.:
 <h1>4. Clustering Analysis</h1>
 <p>To identify groups of communities with similar service request structures, k-means clustering was applied to standardized complaint frequencies.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/03_cluster.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 程序包'tidymodels'是用R版本4.5.2 来建造的</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 程序包'dials'是用R版本4.5.2 来建造的</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 程序包'infer'是用R版本4.5.2 来建造的</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 程序包'modeldata'是用R版本4.5.2 来建造的</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 程序包'parsnip'是用R版本4.5.2 来建造的</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 程序包'recipes'是用R版本4.5.2 来建造的</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 程序包'rsample'是用R版本4.5.2 来建造的</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 程序包'tailor'是用R版本4.5.2 来建造的</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 程序包'tune'是用R版本4.5.2 来建造的</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 程序包'workflows'是用R版本4.5.2 来建造的</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 程序包'workflowsets'是用R版本4.5.2 来建造的</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 程序包'yardstick'是用R版本4.5.2 来建造的</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Step 3: Read ca_type_matrix.csv and perform clustering...</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/03_cluster.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
 <p><img src="final_report_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The clustering results have been saved to data/ca_clustered.csv</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 77 × 12
@@ -404,25 +323,7 @@ e.g.:
 <h1>5. Interactive Mapping</h1>
 <p>An interactive Leaflet map was created to visualize 311 requests by cluster assignment.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/04_map_leaflet.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: 程序包'leaflet'是用R版本4.5.2 来建造的</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Step 4: Read the clustering results ca_clustered.csv and the original 311 data raw_311.csv...</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: One or more parsing issues, call `problems()` on your data frame for details,
-e.g.:
-  dat &lt;- vroom(...)
-  problems(dat)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>With a large number of records, sampling5000 The bar is used for map display.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>An interactive 311-dot plot has been generated (colored by cluster)</code></pre>
-</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">"scripts/04_map_leaflet.R"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Each point represents a 311 request, colored by the cluster of its community area. The map allows users to explore spatial patterns and compare service needs across neighborhoods.</p>
 </section>
